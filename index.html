@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Email Signature</title>
+  <style type="text/css">
+    form{
+      width: 50%;
+      display: inline-block;
+      float: left;
+    }
+    form, label, input, input::placeholder, textarea, textarea::placeholder{
+      font-size: 12px;
+      font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    }
+    input, textarea{
+      border-radius: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      outline: 1px solid black;
+      display: inline-block;
+      margin: 4px 0;
+      padding: 2px 4px;
+    }
+    label{
+      margin-top: 8px;
+    }
+    input[type=button]{
+      background: white;
+    }
+    form div{
+      margin-bottom: 18px;
+    }
+    .signature_preview{
+      margin-top: 8px;
+      width: 50%;
+      display: inline-block;
+      float: left;
+    }
+    .copy-btn{
+      margin-top: 30px;
+    }
+    textarea {
+      resize: none;
+    }
+  </style>
+
+</head>
+<body>
+
+  <form autocomplete="off" action="#">
+
+    <div>
+      <label>Name:</label><br>
+      <input type="text" placeholder="John Doe" value="" onChange="
+        document.querySelector('#name td').innerHTML=this.value
+      ">
+    </div>
+
+    <div class="position-field">
+    <label>Position:</label><br>
+      <input type="text" placeholder="EVP Grilling" value="" onChange="document.querySelector('#position td').innerHTML=this.value"><br>
+      <input type="button" value="Remove" onclick="
+        document.querySelector('#position').remove();
+        document.querySelector('.position-field').remove();
+        document.querySelector('#name td').style.paddingBottom = '6px';
+      "/>
+    </div>
+
+    <div class="phone-01-field">
+      <label>Phone 01</label><br>
+      <input type="text" placeholder="Mobile" id="phone-01-title-input" value="" onChange="document.querySelector('#phone-01-title').innerHTML=this.value"><input type="text" placeholder="+1 123 123 1234" id="phone-01-num-input" value="" onChange="
+        document.querySelector('#phone-01-num span').innerHTML=this.value;
+        document.querySelector('#phone-01-num a').href='tel:'+this.value.replace(/\s/g, '');
+        "><br>
+      <input type="button" value="Remove" style="display:none;" onclick="
+        document.querySelector('.phone-01-field').remove();
+        document.querySelector('#phone-01').remove();
+      "/>
+    </div>
+
+    <div class="phone-02-field">
+      <label>Phone 02</label><br>
+      <input type="text" placeholder="Office" id="phone-02-title-input" value="" onChange="
+        document.querySelector('#phone-02-title').innerHTML=this.value
+      "><input type="text" placeholder="+1 123 123 1234" id="phone-02-num-input" value="" onChange="
+        document.querySelector('#phone-02-num span').innerHTML=this.value;
+        document.querySelector('#phone-02-num a').href='tel:'+this.value.replace(/\s/g, '');
+      "><br>
+      <input type="button" value="Remove" onclick="
+        document.querySelector('.phone-02-field').remove();
+        document.querySelector('#phone-02').remove();
+        document.querySelector('#phone-01-title').style.paddingBottom = '6px';
+        document.querySelector('#phone-01-num').style.paddingBottom = '6px';
+        document.querySelector('.phone-01-field input[type=button]').style.display = 'block';
+      "/>
+    </div>
+
+    <div class="address-field">
+      <label>Address:</label><br>
+      <textarea id="address-input" name="address" rows="5" cols="33" placeholder="123 Main Street..." onChange="
+        document.querySelector('#address-01 td').innerHTML=this.value.replace(/\n\r?/g, '<br />')
+      "></textarea><br>
+      <input type="button" value="Remove" onclick="
+        document.querySelector('#address-01').remove();
+        document.querySelector('.address-field').remove();
+      "/>
+    </div>
+  </form>
+
+  <div class="signature_preview">
+
+    <table id="signature" style="font-size:12px;line-height:12px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr id="name">
+          <td colspan="2" style="padding-bottom:2px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;" width="300">John Doe</td>
+        </tr>
+        <tr id="position">
+          <td colspan="2" style="padding-top:2px;padding-bottom:6px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;" width="300">EVP Grilling</td>
+        </tr>
+
+        <tr id="phone-01">
+          <td id="phone-01-title" style="padding-top:6px;padding-bottom:2px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;" width="50">Mobile</td>
+          <td id="phone-01-num" style="padding-top:6px;padding-bottom:2px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;" width="250"><a class="transition" href="tel:+1 123 123 1234" style="color: #1E1E1E; text-decoration: none;"><span style="color: #1E1E1E;">+1 123 123 1234</span></a></td>
+        </tr>
+        <tr id="phone-02">
+          <td id="phone-02-title" style="padding-top:2px;padding-bottom:6px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;" width="50">Office</td>
+          <td id="phone-02-num" style="padding-top:2px;padding-bottom:6px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;" width="250"><a class="transition" href="tel:+1 123 123 1234" style="color: #1E1E1E; text-decoration: none;"><span>+1 123 123 1234</span></a></td>
+        </tr>
+
+        <tr id="address-01">
+          <td colspan="2" style="padding-top:6px;padding-bottom:6px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:16px;" width="75">123 Main Street, #2B<br>Boulder, CO 80304</td>
+        </tr>
+
+        <tr>
+          <td colspan="2" width="300" style="padding-top:5px;">
+            <a href="https://www.sparkgrills.com/"><img src="./dist/spark_wordmark.png" alt="Spark" title="Spark" style="border-style:none;display:block;" width="79" height="33"></a>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="padding-bottom:4px;font-family:Avenir,'Helvetica Neue',Helvetica,Arial,sans-serif;white-space:pre-line;" width="300"></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <input class="copy-btn" type="button" data-clipboard-target="#signature" value="Copy Signature" name="">
+  </div>
+
+  <script src="./dist/clipboard.min.js"></script>
+  <script type="text/javascript">
+    new ClipboardJS('.copy-btn');
+  </script>
+
+</body>
+</html>
